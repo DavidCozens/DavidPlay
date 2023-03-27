@@ -11,5 +11,10 @@ pipeline{
         sh 'gcc -o DavidPlay DavidPlay.c'
       }
     }
+    stage('Run') {
+      steps {
+        sh label: 'Run DavidPlay', script: './DavidPlay'
+      }
+    }
   }
 }
