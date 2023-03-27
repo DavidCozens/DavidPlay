@@ -16,5 +16,10 @@ pipeline{
         sh label: 'Run DavidPlay', script: './DavidPlay'
       }
     }
+    stage('Cleanup') {
+      steps {
+        cleanWs()
+      }
+    }
   }
 }
