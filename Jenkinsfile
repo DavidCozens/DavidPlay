@@ -6,9 +6,9 @@ pipeline{
     }
   }
   stages {
-    stage('echo') {
+    stage('Build') {
       steps {
-        echo 'Hello World'
+        sh 'gcc -o DavidPlay DavidPlay.c'
       }
     }
   }
