@@ -16,6 +16,12 @@ pipeline{
         sh label: 'Run DavidPlay', script: './DavidPlay'
       }
     }
+    stage('Publish') {
+      steps {
+        archiveArtifacts artifacts: 'DavidPlay', followSymlinks: false
+        fingerprint 'DavidPlay'
+      }
+    }
     stage('Cleanup') {
       steps {
         cleanWs()
