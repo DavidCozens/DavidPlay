@@ -19,7 +19,7 @@ pipeline{
     stage('Run') {
       agent {
         docker {
-          image 'gcc:12.2.0'
+          image 'ubuntu:lunar'
           reuseNode true
           registryCredentialsId 'dockerhub'
         }
@@ -34,7 +34,7 @@ pipeline{
     stage('Publish') {
       agent {
         docker {
-          image 'gcc:12.2.0'
+          image 'ubuntu:lunar'
           reuseNode true
           registryCredentialsId 'dockerhub'
         }
@@ -50,7 +50,7 @@ pipeline{
     stage('Cleanup') {
       agent {
         docker {
-          image 'gcc:12.2.0'
+          image 'ubuntu:lunar'
           reuseNode true
           registryCredentialsId 'dockerhub'
         }
