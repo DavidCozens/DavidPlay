@@ -16,7 +16,11 @@ pipeline{
         sh 'gcc -o DavidPlay DavidPlay.c'
       }
     }
-    stage('Run') {
+    stage('') {
+  parallel {
+    // One or more stages need to be included within the parallel block.
+
+    stage('Ubuntu') {
       agent {
         docker {
           image 'ubuntu:lunar'
@@ -28,9 +32,28 @@ pipeline{
         skipDefaultCheckout true
       }
       steps {
+        sleep 5
         sh label: 'Run DavidPlay', script: './DavidPlay'
       }
     }
+        stage('debian') {
+      agent {
+        docker {
+          image 'debian:bookworm'
+          reuseNode true
+          registryCredentialsId 'dockerhub'
+        }
+      }
+      options {
+        skipDefaultCheckout true
+      }
+      steps {
+        sleep 10
+        sh label: 'Run DavidPlay', script: './DavidPlay'
+      }
+    }
+      }
+  }
     stage('Publish') {
       agent {
         docker {
